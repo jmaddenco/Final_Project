@@ -17,7 +17,7 @@ class GameWindow < Gosu::Window
     @player.warp(width/2.0, height/2.0)
  	 	
  	 	@timer = Timer.new(@player)
-    @font = Gosu::Font.new(20)
+    @font = Gosu::Font.new(25)
 
   end
 
@@ -48,7 +48,7 @@ class GameWindow < Gosu::Window
 
   private
   	def gravity
-			@player.y < 35 ? @player.vel_y += GRAVITY : @player.vel_y = 0
+			@player.vel_y -= GRAVITY if @player.y + 35 < height
 		end
   	
 end
