@@ -4,7 +4,8 @@ require_relative 'z_order'
 class	Player
 	attr_accessor :y, :vel_y, :score, :health
 
-	ACCELERATION = 25
+	ACCELERATION = 5
+	JUMP_POWER = 0.1
 
 	def initialize
 		@x = @y = @vel_y = 0.0
@@ -29,6 +30,9 @@ class	Player
 		@vel_y *= 0.95
 	end
 
+	def jump
+		@vel_y += JUMP_POWER
+	end
 
 	def death?
 		@health < 1

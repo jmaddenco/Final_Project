@@ -14,7 +14,7 @@ class GameWindow < Gosu::Window
     @background_image = Gosu::Image.new("media/Upper_Taconic_cropped.jpg", 
                                         :tileable => true) 
     @player = Player.new
-    @player.warp(width/2.0, height/2.0)
+    @player.warp(width/4.0, height/2.0)
  	 	
  	 	@timer = Timer.new(@player)
     @font = Gosu::Font.new(25)
@@ -26,8 +26,10 @@ class GameWindow < Gosu::Window
   	gravity
 
     @player.accelerate if Gosu::button_down? Gosu::KbSpace
-    
+   
+    @player.jump
     @player.move
+
   end
 
   def draw
@@ -48,7 +50,9 @@ class GameWindow < Gosu::Window
 
   private
   	def gravity
-			@player.vel_y -= GRAVITY if @player.y + 35 < height
+			@player.vel_y -= GRAVITY if @player.y + 120 < height
+      @player.vel_y = 0 if @player.y + 120 == height
+      @player.vel_y = 0 if @player.y + 0 == height
 		end
   	
 end
